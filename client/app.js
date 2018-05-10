@@ -11,7 +11,7 @@ import App from './views/App'
 //-----------------------
 
 import {Provider} from 'react-redux'
-import configureStore  from './redux/store'
+import configureStore  from './store/store'
 const initialState = window.__INITIAL__STATE__ || {} // eslint-disable-line
 const store = configureStore(initialState, 'client')
 

@@ -1,15 +1,12 @@
-import AppStateClass from './app-state'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import reducer from './reducer'
 
-export const AppState = AppStateClass
-
-export default {
-  AppState,
-}
-
-console.log(565656, new AppState())
-
-export const createStoreMap = () => {
-  return {
-    appState: new AppState(),
+export default function configureStore(initialState, ifClient) {
+  if(ifClient === 'client'){
+    const reduxDevTools = window.devToolsExtension ? window.devToolsExtension() : () => {}
+    return createStore(reducer, initialState, compose(applyMiddleware(thunk), reduxDevTools));
+  } else {
+    return createStore(reducer, initialState, compose(applyMiddleware(thunk)));
   }
 }
