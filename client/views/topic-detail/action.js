@@ -1,4 +1,7 @@
+import axios from 'axios'
+
 import Type from '../../store/type'
+
 
 export const addNum = () => ({type:Type.topicList.ADD})
 export const removeNum = () => ({type:Type.topicList.REMOVE})
@@ -18,3 +21,5 @@ export const changeNameAsync = () => dispatch => {
     dispatch(changeName(data))
   })
 }
+
+

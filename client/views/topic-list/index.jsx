@@ -1,16 +1,16 @@
 import React from 'react'
 
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-//---------
 
 import { connect } from 'react-redux'
-import { addAsync, changeNameAsync } from "./action";
+
+import { addAsync, changeNameAsync, testServer } from "./action";
 @connect(
   state => ({num: state.topicList.counter, name: state.topicList.name}),
-  {addAsync, changeNameAsync}
+  {addAsync, changeNameAsync, testServer}
+
 )
-//------------
+
 export default class TopicList extends React.Component {
   // constructor() {
   //   super()
@@ -19,14 +19,11 @@ export default class TopicList extends React.Component {
   // componentDidMount() {
   //   // do something here
   // }
-  // asyncBootstrap() {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       this.props.appState.count = 3
-  //       resolve(true)
-  //     })
-  //   })
-  // }
+
+  asyncBootstrap() {
+    return this.props.testServer()
+  }
+
   // changeName(event) {
   //   this.props.appState.changeName(event.target.value)
   // }
