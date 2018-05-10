@@ -7,6 +7,6 @@ export default function configureStore(initialState, ifClient) {
     const reduxDevTools = window.devToolsExtension ? window.devToolsExtension() : () => {}
     return createStore(reducer, initialState, compose(applyMiddleware(thunk), reduxDevTools));
   } else {
-    return createStore(reducer, initialState, compose(applyMiddleware(thunk)));
+    return createStore(reducer, compose(applyMiddleware(thunk)));
   }
 }
