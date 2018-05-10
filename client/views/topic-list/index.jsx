@@ -4,10 +4,13 @@ import Helmet from 'react-helmet'
 
 import { connect } from 'react-redux'
 
-import { addAsync, changeNameAsync, testServer } from "./action";
+import { addAsync, changeNameAsync, testServer, testApi } from "./action"
+
+import axios from 'axios'
+
 @connect(
   state => ({num: state.topicList.counter, name: state.topicList.name}),
-  {addAsync, changeNameAsync, testServer}
+  {addAsync, changeNameAsync, testServer, testApi}
 
 )
 
@@ -22,6 +25,24 @@ export default class TopicList extends React.Component {
 
   asyncBootstrap() {
     return this.props.testServer()
+  }
+
+  componentDidMount() {
+    axios.post(
+      '/data?path=qlydchannel_contentlist.do',
+      {
+        "channelid": 1,
+        "pageno": 1,
+        "pagesize": 10
+      }
+    ).then((resp) => {
+        const { data } = resp
+        if (data.rc == 0) {
+          console.log(data)
+        } else {
+          console.log('请求失败')
+        }
+      }).catch()
   }
 
   // changeName(event) {
