@@ -1,7 +1,7 @@
 const axios = require('axios')
 const querystring = require('query-string')
 
-const baseUrl = 'http://cnodejs.org/api/v1'
+const baseUrl = require("../../config").reqUrl + '/qlwb/'
 
 module.exports = function (req, res, next) {
   const path = req.path
@@ -20,14 +20,23 @@ module.exports = function (req, res, next) {
   })
   if (query.needAccessToken) delete query.needAccessToken
 
-  axios(`${baseUrl}${path}`, {
+  console.log(`${baseUrl}qlydchannel_contentlist.do`)
+
+  axios(`${baseUrl}qlydchannel_contentlist.do`, {
     method: req.method,
     params: query,
-    data: querystring.stringify(Object.assign({}, req.body, {
-      accesstoken: (needAccessToken && req.method === 'POST') ? user.accessToken : ''
-    })),
+    data: {
+      "channelid": 1,
+      "pageno": 1,
+      "pagesize": 10
+    },
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      'Accept-Language': 'zh-CN,zh;q=0.8',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Cache-Control': 'max-age=0',
+      'Connection': 'keep-alive',
+      'client_imei': '095C15DD31C094BEFB8501CEE389573C'
     }
   }).then(resp => {
     if (resp.status === 200) {

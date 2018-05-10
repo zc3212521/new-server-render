@@ -16,7 +16,7 @@ import App from './views/App'
 //---------
 
 import {Provider} from 'react-redux'
-import configureStore  from './redux/store'
+import configureStore  from './store/store'
 const store = configureStore()
 export { store }
 //---------
