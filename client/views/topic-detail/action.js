@@ -1,11 +1,12 @@
 import axios from 'axios'
 
-import Type from '../type'
+import Type from '../../store/type'
 
-export const addNum = () => ({type:Type.test.ADD})
-export const removeNum = () => ({type:Type.test.REMOVE})
+
+export const addNum = () => ({type:Type.topicList.ADD})
+export const removeNum = () => ({type:Type.topicList.REMOVE})
 export const changeName = (data) => ({
-  type:Type.test.CHANGE_NAME,
+  type:Type.topicList.CHANGE_NAME,
   data: data
 })
 export const addAsync = () => dispatch => {

@@ -1,24 +1,21 @@
 import React from 'react'
 
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import { AppState } from '../../store/app-state'
-//---------
-
 import { connect } from 'react-redux'
-import { addAsync, changeNameAsync, testServer } from "../../redux/action";
+
+import { addAsync, changeNameAsync, testServer } from "./action";
 @connect(
-  state => ({num: state.counter, name: state.name}),
+  state => ({num: state.topicList.counter, name: state.topicList.name}),
   {addAsync, changeNameAsync, testServer}
+
 )
-//------------
+
 export default class TopicList extends React.Component {
   // constructor() {
   //   super()
   //   this.changeName = this.changeName.bind(this)
   // }
-
   // componentDidMount() {
   //   // do something here
   // }
@@ -51,8 +48,4 @@ export default class TopicList extends React.Component {
       </div>
     )
   }
-}
-
-TopicList.propTypes = {
-  appState: PropTypes.instanceOf(AppState),
 }
