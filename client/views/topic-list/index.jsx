@@ -7,10 +7,10 @@ import { AppState } from '../../store/app-state'
 //---------
 
 import { connect } from 'react-redux'
-import { addAsync, changeNameAsync } from "../../redux/action";
+import { addAsync, changeNameAsync, testServer } from "../../redux/action";
 @connect(
   state => ({num: state.counter, name: state.name}),
-  {addAsync, changeNameAsync}
+  {addAsync, changeNameAsync, testServer}
 )
 //------------
 export default class TopicList extends React.Component {
@@ -23,14 +23,9 @@ export default class TopicList extends React.Component {
   //   // do something here
   // }
 
-  // asyncBootstrap() {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       this.props.appState.count = 3
-  //       resolve(true)
-  //     })
-  //   })
-  // }
+  asyncBootstrap() {
+    return this.props.testServer()
+  }
 
   // changeName(event) {
   //   this.props.appState.changeName(event.target.value)

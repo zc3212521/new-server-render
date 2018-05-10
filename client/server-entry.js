@@ -21,11 +21,11 @@ const store = configureStore()
 export { store }
 //---------
 
-export default (store, routerContext, sheetsRegistry, jss, theme, url) => (
-<Provider store={store}>
-  <StaticRouter context={routerContext} location={url}>
-  <App />
-  </StaticRouter>
+export default (store, routerContext, sheetsRegistry, jss, url) => (
+  <Provider store={store}>
+    <StaticRouter context={routerContext} location={url}>
+      <App />
+    </StaticRouter>
   </Provider>
 )
 
