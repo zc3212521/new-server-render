@@ -1,20 +1,17 @@
 import React from 'react'
-import { StaticRouter } from 'react-router-dom'
+import {Provider} from 'react-redux'
+import {StaticRouter} from 'react-router-dom'
 
 import App from './views/App'
+import configureStore from './store/store'
 
-//---------
-
-import {Provider} from 'react-redux'
-import configureStore  from './store/store'
 const store = configureStore()
-export { store }
-//---------
+export {store}
 
 export default (store, routerContext, sheetsRegistry, jss, theme, url) => (
-<Provider store={store}>
-  <StaticRouter context={routerContext} location={url}>
-  <App />
-  </StaticRouter>
+  <Provider store={store}>
+    <StaticRouter context={routerContext} location={url}>
+      <App/>
+    </StaticRouter>
   </Provider>
 )
