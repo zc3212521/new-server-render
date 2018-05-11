@@ -9,7 +9,8 @@ const config = webpackMerge(baseConfig, {
     app: path.join(__dirname, '../client/app.js'),
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[id].[chunkhash:8].js'
   },
   plugins: [
     new HTMLPlugin({
@@ -19,7 +20,24 @@ const config = webpackMerge(baseConfig, {
       template: '!!ejs-compiled-loader!' + path.join(__dirname, '../client/server.template.ejs'),
       filename: 'server.ejs'
     }),
-  ]
+
+  ],
+
+  optimization: {
+    runtimeChunk: {
+      name: "manifest"
+    },
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all"
+        }
+      }
+    }
+  },
+
 })
 
 module.exports = config
