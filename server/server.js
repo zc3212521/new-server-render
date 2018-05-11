@@ -26,8 +26,9 @@ app.use(session({
 
 app.use(favicon(path.join(__dirname, '../favicon.ico')))
 
-app.use('/api/user', require('./util/handle-login'))
-app.use('/api', require('./util/proxy'))
+app.use('/data/user', require('./util/handle-login'))
+app.use('/data', require('./util/proxy-data'))
+
 
 if (!isDev) {
   const serverEntry = require('../dist/server-entry')

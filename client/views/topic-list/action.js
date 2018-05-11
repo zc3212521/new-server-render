@@ -34,15 +34,6 @@ export const testServer = () => dispatch => {
 
 export const testApi = () => {
   return new Promise((resolve, reject) => {
-    axios.post('/api/qlydchannel_contentlist.do', {path: 'c'})
-      .then((resp) => {
-        const { data } = resp
-        if (true) {
-          console.log(data)
-          resolve(data)
-        } else {
-          reject(data)
-        }
-      }).catch(reject)
+
   })
 }
