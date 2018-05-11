@@ -33,6 +33,7 @@ export default class TopicList extends React.Component {
     const name = this.props.name;
     const addAsync = this.props.addAsync;
     const changeNameAsync = this.props.changeNameAsync;
+    const envirment = process.env.NODE_ENV
     return (
       <div>
         <Helmet>
@@ -44,6 +45,7 @@ export default class TopicList extends React.Component {
           <button onClick={addAsync}>+</button>
           <div>当前名字{name.name}</div>
           <button onClick={changeNameAsync}>change name</button>
+          <div>当前环境{envirment}</div>
         </div>
       </div>
     )
