@@ -9,10 +9,17 @@ export default class App extends React.Component {
     // do something here
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props.location)
+    console.log(nextProps.location)
+  }
+
   render() {
     return [
       <div key="banner">
         <Link to="/">首页</Link>
+        <br />
+        <Link to="/list">列表页</Link>
         <br />
         <Link to="/detail">详情页</Link>
       </div>,

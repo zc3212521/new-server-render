@@ -10,6 +10,10 @@ import App from './views/App'
 import configureStore  from './store/store'
 
 const initialState = window.__INITIAL__STATE__ || {}
+
+window.__SERVER__PATH__ = initialState.path // 取出当前服务端渲染的path路径，判断二次渲染用
+delete initialState.path // 删掉，因为redux store中没有此属性
+
 const store = configureStore(initialState, 'client')
 
 const root = document.getElementById('root')

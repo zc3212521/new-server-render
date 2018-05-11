@@ -41,13 +41,13 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "react-simplemde-editor": "^3.6.11",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
     "serialize-javascript": "^1.4.0",
     "serve-favicon": "^2.4.5",
     "simplemde": "^1.11.2"
-
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

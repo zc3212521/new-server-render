@@ -28,6 +28,19 @@ export default class TopicList extends React.Component {
   }
 
   componentDidMount() {
+
+    // console.log(this.props.location.pathname)
+
+    if(window.__SERVER__PATH__ && window.__SERVER__PATH__ === this.props.location.pathname) {
+      // console.log("置空", window.__SERVER__PATH__)
+      window.__SERVER__PATH__ = false // 置空
+    } else {
+      // 请求数据
+      console.log("请求数据")
+      this.props.testServer()
+    }
+
+
     axios.post(
       '/data?path=qlydchannel_contentlist.do',
       {
@@ -43,6 +56,11 @@ export default class TopicList extends React.Component {
           console.log('请求失败')
         }
       }).catch()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(this.props.location)
+    console.log(nextProps.location)
   }
 
   // changeName(event) {

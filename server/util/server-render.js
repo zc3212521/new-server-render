@@ -32,7 +32,7 @@ module.exports = (bundle, template, req, res) => {
       console.log(store.getState())
       const html = ejs.render(template, {
         appString: content,
-        initialState: JSON.stringify(store.getState()),
+        initialState: JSON.stringify(Object.assign({path: req.path, ...store.getState()})),  //添加path属性，判断客户端是否二次渲染时使用
         meta: helmet.meta.toString(),
         title: helmet.title.toString(),
         style: helmet.style.toString(),
