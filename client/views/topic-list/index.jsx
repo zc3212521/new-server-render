@@ -1,12 +1,10 @@
 import React from 'react'
-
+import axios from 'axios'
 import Helmet from 'react-helmet'
 
 import { connect } from 'react-redux'
 
 import { addAsync, changeNameAsync, testServer, testApi } from "./action"
-
-import axios from 'axios'
 
 @connect(
   state => ({num: state.topicList.counter, name: state.topicList.name}),
@@ -53,9 +51,9 @@ export default class TopicList extends React.Component {
         if (data.rc == 0) {
           console.log(data)
         } else {
-          console.log('请求失败')
+          console.error('请求失败')
         }
-      }).catch()
+      }).catch(err => console.error('请求失败', err))
   }
 
   componentWillReceiveProps(nextProps) {
@@ -73,6 +71,7 @@ export default class TopicList extends React.Component {
     const addAsync = this.props.addAsync;
     const changeNameAsync = this.props.changeNameAsync;
     const envirment = process.env.NODE_ENV
+    const base = typeof PRODUCTION === 'undefined' ? 'none' : PRODUCTION
     return (
       <div>
         <Helmet>
@@ -85,6 +84,7 @@ export default class TopicList extends React.Component {
           <div>当前名字{name.name}</div>
           <button onClick={changeNameAsync}>change name</button>
           <div>当前环境{envirment}</div>
+          <div>当前域名环境{ base }</div>
         </div>
       </div>
     )
