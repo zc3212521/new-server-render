@@ -7,10 +7,11 @@
     "test": "npm run clear && npm run test:client && npm run test:server",
     "test:client": "webpack --config build/webpack.test.client.js",
     "test:server": "webpack --config build/webpack.test.server.js",
-    "prod": "npm run clear && npm run build:client && npm run prod:server",
+    "prod": "npm run clear && npm run prod:client && npm run prod:server",
     "prod:client": "webpack --config build/webpack.prod.client.js",
     "prod:server": "webpack --config build/webpack.prod.server.js",
     "dev:client": "npm run clear && webpack-dev-server --config build/webpack.dev.client.js",
+    "start:prod": "cross-env NODE_ENV=production node server/server.js",
     "start": "nodemon server/server.js",
     "clear": "rimraf dist"
   },

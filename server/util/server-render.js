@@ -11,15 +11,12 @@ module.exports = (bundle, template, req, res) => {
   return new Promise((resolve, reject) => {
     // const createStoreMap = bundle.createStoreMap
     const store = bundle.store
-    console.log(typeof store.getState())
     const createApp = bundle.default
 
     const routerContext = {}
     const sheetsRegistry = new SheetsRegistry()
     const jss = create(preset())
     const app = createApp(store, routerContext, sheetsRegistry, jss, req.url)
-
-    console.log(store.getState())
 
     asyncBootstrap(app).then(() => {
       if (routerContext.url) {
@@ -29,7 +26,7 @@ module.exports = (bundle, template, req, res) => {
       }
       const helmet = Helmet.rewind()
       const content = ReactDomServer.renderToString(app)
-      console.log(store.getState())
+
       const html = ejs.render(template, {
         appString: content,
         initialState: JSON.stringify(store.getState()),
