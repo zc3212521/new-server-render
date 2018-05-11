@@ -40,7 +40,7 @@ export default class TopicList extends React.Component {
 
 
     axios.post(
-      '/data?path=qlydchannel_contentlist.do',
+      '/data/qlydchannel_contentlist.do',
       {
         "channelid": 1,
         "pageno": 1,
