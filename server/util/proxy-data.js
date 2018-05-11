@@ -1,7 +1,7 @@
 const axios = require('axios')
 const querystring = require('query-string')
 
-const baseUrl = require("../../config").reqUrl + '/xxxx'
+const baseUrl = require("../../config").reqUrl + '/qlwb'
 
 module.exports = function (req, res, next) {
 
