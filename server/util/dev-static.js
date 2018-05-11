@@ -6,7 +6,7 @@ const proxy = require('http-proxy-middleware')
 
 const serverRender = require('./server-render')
 
-const serverConfig = require('../../build/webpack.config.server')
+const serverConfig = require('../../build/webpack.dev.server')
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
