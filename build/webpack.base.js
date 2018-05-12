@@ -7,7 +7,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      component: path.resolve(__dirname, '../client/component')
+      component: path.resolve(__dirname, '../client/component'),
+      type: path.resolve(__dirname, '../client/store/type')
     },
     extensions: ['.js', '.jsx'],
     enforceExtension: false,
