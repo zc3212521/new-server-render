@@ -6,7 +6,12 @@ module.exports = {
     publicPath: '/public/',
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    alias: {
+      component: path.resolve(__dirname, '../client/component'),
+      type: path.resolve(__dirname, '../client/store/type')
+    },
+    extensions: ['.js', '.jsx'],
+    enforceExtension: false,
   },
   module: {
     rules: [

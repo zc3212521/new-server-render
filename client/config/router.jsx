@@ -8,9 +8,12 @@ import TopicList from '../views/topic-list/index'
 import TopicDetail from '../views/topic-detail/index'
 import TestApi from '../views/test/api-test'
 
+import {  } from "../views/news-detail/normal";
+
 export default () => [
   <Route path="/" exact key="first" />,
   <Route path="/list" component={TopicList} key="list" />,
   <Route path="/detail" component={TopicDetail} key="detail" />,
   <Route path="/test" component={TestApi} key="test" />,
+
 ]

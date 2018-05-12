@@ -28,6 +28,7 @@
     "ejs-compiled-loader": "^1.1.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
+    "jquery": "^3.3.1",
     "jss": "^9.3.3",
     "jss-preset-default": "^4.0.1",
     "marked": "^0.3.7",
@@ -44,11 +45,13 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-simplemde-editor": "^3.6.11",
+    "react-slick": "^0.23.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
     "serialize-javascript": "^1.4.0",
     "serve-favicon": "^2.4.5",
-    "simplemde": "^1.11.2"
+    "simplemde": "^1.11.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
