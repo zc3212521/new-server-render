@@ -22,6 +22,10 @@ export default class App extends React.Component {
         <Link to="/list">列表页</Link>
         <br />
         <Link to="/detail">详情页</Link>
+        <br />
+        <Link to="/news/show/id/7932933">郑州警方通报</Link>
+        <br />
+        <Link to="/news/show/id/7934192">读好书</Link>
       </div>,
       <Routes key="routes" />,
     ]

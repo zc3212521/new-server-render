@@ -6,12 +6,25 @@ const changeNormalDetail = (data) => ({
   data: data
 })
 
-const getNormalDetail = (id = 1) => dispatch => {
-  return axios.post("/data?path=newsdetail.do", {
+const baseUrl = process.env.API_BASE || ''
+
+const getNormalDetail = (id) => (dispatch) => {
+  return axios.post(baseUrl + "/data?path=newsdetail.do", {
     "token":"",
     "fromid": 1,
-    "newsid": 7926964
+    "newsid": id
   }).then(res => {
-    dispatch(res)
-  }).catch(err => console.log(error))
+    if(res.data.rc == 0) {
+      dispatch(changeNormalDetail(res.data.data))
+    } else {
+      new Error(res.data.desc)
+    }
+  }).catch(err => {
+    console.log(err)
+    return err
+  })
+}
+
+export {
+  getNormalDetail
 }

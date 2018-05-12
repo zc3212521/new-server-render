@@ -1,9 +1,7 @@
 const axios = require('axios')
-const querystring = require('query-string')
-
 const baseUrl = require("../config/baseUrl").reqUrl + '/qlwb'
 
-module.exports = function (req, res, next) {
+module.exports = function (req, res) {
 
   const path = req.query.path
 
@@ -17,10 +15,12 @@ module.exports = function (req, res, next) {
     headers: {
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
       'Accept-Language': 'zh-CN,zh;q=0.8',
-      'Content-Type': 'application/x-www-form-urlencoded',
       'Cache-Control': 'max-age=0',
       'Connection': 'keep-alive',
-      'client_imei': '095C15DD31C094BEFB8501CEE389573C'
+      'version': '6.5.3',
+      // 'source:': ''   news:5, newsjin:3, newsyi:4, app:1, uc:6
+      'header': req.headers['user-agent'],
+      'ip': req.ip
     }
   }).then(resp => {
     if (resp.status === 200) {
@@ -29,6 +29,7 @@ module.exports = function (req, res, next) {
       res.status(resp.status).send(resp.data)
     }
   }).catch(err => {
+    console.log("error")
     if (err.response) {
       res.status(500).send(err.response.data)
     } else {
