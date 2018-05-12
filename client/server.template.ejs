@@ -1,15 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script>
+
+    (function(doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window
+          ? 'orientationchange'
+          : 'resize',
+        recalc = function() {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth)
+            return;
+          if (clientWidth >= 1080) {
+            docEl.style.fontSize = '130px';
+          } else {
+            docEl.style.fontSize = clientWidth / 7.5 + 'px';
+          }
+        };
+
+      if (!doc.addEventListener)
+        return;
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window)
+
+  </script>
+
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+    if(!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+    }
+  </script>
 
   <%%- meta %>
 
   <%%- title %>
 
+  <link rel="dns-prefetch" href="//staticweb.ql1d.com">
+  <link rel="dns-prefetch" href="//wscdn.ql1d.com">
   <%%- link %>
 
   <%%- style %>
