@@ -15,7 +15,7 @@
     "start": "nodemon server/server.js",
     "clear": "rimraf dist"
   },
-  "author": "Jokcy",
+  "author": "zc_cts",
   "license": "ISC",
   "dependencies": {
     "antd-mobile": "^2.1.8",
