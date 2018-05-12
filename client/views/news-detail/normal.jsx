@@ -2,7 +2,9 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 
-import {getNormalDetail} from './action'
+import { getNormalDetail } from './action'
+import { loadInitData } from 'config/global'
+import NewsHeader from 'component/business/news-header'
 
 @connect(
   state => ({
@@ -35,11 +37,7 @@ export default class NormalNews extends React.Component {
   }
 
   componentDidMount() {
-    if(window.__SERVER__PATH__ && window.__SERVER__PATH__ === this.props.location.pathname) {
-      window.__SERVER__PATH__ = false
-    } else {
-      this.getInitialData()
-    }
+    loadInitData(this.props.location.pathname, this.getInitialData)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,46 +55,19 @@ export default class NormalNews extends React.Component {
   render() {
 
     const { news } = this.props
-    const html  =  {__html: news.content}
+    const html  =  {__html: news.content}  // todo newscontent里面的齐鲁壹点要加链接
 
     return (
       <div>
         <Helmet>
           <title>{ news.title }</title>
-          <meta name="description" content={ news.title + "壹点网，壹点新闻网，齐鲁壹点网，齐鲁壹点，新闻资讯，山东新闻" } />
+          <meta name="description" content={ news.title || "" + "壹点网，壹点新闻网，齐鲁壹点网，齐鲁壹点，新闻资讯，山东新闻" } />
           <meta name="keywords" content={ news.tags } />
-          <link href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css" rel="stylesheet" />          <style>{`
+          <link href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css" rel="stylesheet" />
+          <style>{`
             html {
               line-height: initial;
               font-size: 50px;
-            }
-           .news-title {
-              font-size: 24px;
-              text-align: center;
-              color: #000;
-              font-size: 0.48rem;
-              line-height: 0.64rem;
-              padding:0.32rem;
-              margin: 0;
-            }
-            .news-origin {
-              font-size: 12px;
-              color: #98a1ab;
-              font-size:0.28rem;
-              margin-bottom:0.64rem;
-              text-align:center;
-            }
-            .news-origin span:first-child {
-              margin-right: 0.24rem;
-            }
-            .news-subtitle-yidianhao {
-                font-size: 0.28rem;
-                line-height: 0.30rem;
-                border: 1px #ffe2d6 solid;
-                color: #ff6d34;
-                margin-right:0.12rem;
-                padding: 0.08rem;
-                display: inline-block;
             }
             .normal-news-content {
               padding: 0 0.32rem;
@@ -128,35 +99,21 @@ export default class NormalNews extends React.Component {
               opacity: 0;
               visibility: hidden;
             }
-            `}
+           `}
           </style>
        </Helmet>
 
         <div>
-          <header>
-            <h1 className="news-title">{ news.title }</h1>
-            <div className="news-origin">
-              {(() => {
-                if (news.ownertype == 3) {
-                  return(
-                    [
-                      <span className="news-subtitle-yidianhao" key="title_yidianhao">壹点号</span>,
-                      <span key="news_authorname">{news.ownername}</span>
-                    ]
-                  )
-                } else {
-                    return <span>{news.source}</span>
-                }
-              })()}
-              <span>{ news.publishtime }</span>
-            </div>
-          </header>
+
+          <NewsHeader news={news} />
 
           <article>
             <div className="normal-news-content" dangerouslySetInnerHTML={html}>
             </div>
           </article>
 
+          {/* todo 评论板块*/}
+          
         </div>
 
       </div>
