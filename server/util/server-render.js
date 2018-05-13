@@ -28,7 +28,8 @@ module.exports = (bundle, template, req, res) => {
       }
 
       const content = ReactDomServer.renderToString(app)
-      const helmet = helmetContext.helmet
+
+      const { helmet } = helmetContext  // 一定要写在renderToString后面，否则取不到改变的值
 
       const html = ejs.render(template, {
         appString: content,
