@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import {Provider} from 'react-redux'
-import {BrowserRouter} from 'react-router-dom'
-
-import {AppContainer} from 'react-hot-loader'
+import { BrowserRouter } from 'react-router-dom'
+import { AppContainer } from 'react-hot-loader'
+import { HelmetProvider } from 'react-helmet-async'
 
 import App from './views/App'
 import configureStore  from './store/store'
@@ -22,7 +21,9 @@ const render = (Component) => {
     <AppContainer>
       <Provider store={store}>
         <BrowserRouter>
-          <Component/>
+          <HelmetProvider>
+            <Component/>
+          </HelmetProvider>
         </BrowserRouter>
       </Provider>
     </AppContainer>,

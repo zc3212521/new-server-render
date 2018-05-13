@@ -1,11 +1,12 @@
 const ejs = require('ejs')
 const asyncBootstrap = require('react-async-bootstrapper').default
 const ReactDomServer = require('react-dom/server')
-const Helmet = require('react-helmet').default
+const Helmet = require('react-helmet-async').default
 
 const SheetsRegistry = require('react-jss').SheetsRegistry
 const create = require('jss').create
 const preset = require('jss-preset-default').default
+
 
 module.exports = (bundle, template, req, res) => {
   return new Promise((resolve, reject) => {
@@ -14,9 +15,10 @@ module.exports = (bundle, template, req, res) => {
     const createApp = bundle.default
 
     const routerContext = {}
+    const helmetContext = {}
     const sheetsRegistry = new SheetsRegistry()
     const jss = create(preset())
-    const app = createApp(store, routerContext, sheetsRegistry, jss, req.url)
+    const app = createApp(store, routerContext, sheetsRegistry, jss, req.url, helmetContext)
 
     asyncBootstrap(app).then(() => {
       if (routerContext.url) {
@@ -24,8 +26,9 @@ module.exports = (bundle, template, req, res) => {
           res.end()
         return
       }
-      const helmet = Helmet.rewind()
+
       const content = ReactDomServer.renderToString(app)
+      const helmet = helmetContext.helmet
 
       const html = ejs.render(template, {
         appString: content,

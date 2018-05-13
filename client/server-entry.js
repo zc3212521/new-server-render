@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 import { StaticRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 // import { Provider, useStaticRendering } from 'mobx-react'
 
 // import { JssProvider } from 'react-jss'
@@ -21,10 +22,12 @@ const store = configureStore()
 export { store }
 //---------
 
-export default (store, routerContext, sheetsRegistry, jss, url) => (
+export default (store, routerContext, sheetsRegistry, jss, url, helmetContext) => (
   <Provider store={store}>
     <StaticRouter context={routerContext} location={url}>
-      <App />
+      <HelmetProvider context={helmetContext}>
+        <App />
+      </HelmetProvider>
     </StaticRouter>
   </Provider>
 )

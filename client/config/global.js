@@ -15,7 +15,7 @@ const axiosPost = (path, reqData, callback, errCallback) => {
   return axios.post(baseUrl + `/data?path=${path}`, reqData)
     .then(res => {
       if(res.data.rc == 0) {
-        console.log(res.data)
+        // console.log(res.data)
         if(typeof callback === 'function') {
           callback(res.data.data)
         }

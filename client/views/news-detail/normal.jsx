@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import Helmet from 'react-helmet-async'
 import { connect } from 'react-redux'
 
 import { getNormalDetail } from './action'
@@ -72,7 +72,6 @@ export default class NormalNews extends React.Component {
             .normal-news-content {
               padding: 0 0.32rem;
               overflow: hidden;
-              backgrond: red;
             }
             .normal-news-content p img {
               width: 100%;
@@ -113,7 +112,7 @@ export default class NormalNews extends React.Component {
           </article>
 
           {/* todo 评论板块*/}
-          
+
         </div>
 
       </div>
